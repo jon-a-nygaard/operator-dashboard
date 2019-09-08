@@ -2,7 +2,7 @@ import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more.src.js';
 import SolidGauge from 'highcharts/modules/solid-gauge.src.js';
-import Chart from './chart.js';
+import Chart from './Chart.js';
 import gaugeOptions from './GaugeOptions.js';
 
 HighchartsMore(Highcharts);

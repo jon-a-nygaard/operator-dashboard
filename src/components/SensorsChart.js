@@ -1,6 +1,6 @@
 import React from 'react';
 import Highcharts from 'highcharts/highstock.js';
-import Chart from './chart.js';
+import Chart from './Chart.js';
 
 
 const mapKeyToName = {

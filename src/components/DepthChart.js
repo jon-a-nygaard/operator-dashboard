@@ -4,7 +4,7 @@ import HighchartsMore from 'highcharts/highcharts-more.src.js';
 import SolidGauge from 'highcharts/modules/solid-gauge.src.js';
 import gaugeOptions from './GaugeOptions.js';
 
-import Chart from './chart.js';
+import Chart from './Chart.js';
 
 HighchartsMore(Highcharts);
 SolidGauge(Highcharts);
