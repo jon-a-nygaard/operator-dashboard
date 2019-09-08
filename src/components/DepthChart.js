@@ -15,7 +15,7 @@ export default class TemperatureChart extends React.Component {
 
     render() {
         const { value, name, measurement } = this.props.options;
-        const options = Object.assign({}, gaugeOptions, {
+        const options = Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
                 max: 100,

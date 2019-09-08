@@ -5,13 +5,17 @@ import './App.css';
 
 import ListSites from './views/ListSites.js';
 import UnitView from './views/UnitView.js';
+import NavigationComponent from './components/NavigationComponent.js';
 
 function App() {
   return (
-    <Router>
-        <Route exact path="/" component={ListSites} />
-        <Route path="/unit/:siteId/:unitId" component={UnitView} />
-    </Router>
+    <div> 
+      <NavigationComponent />
+      <Router>
+          <Route exact path="/" component={ListSites} />
+          <Route path="/unit/:siteId/:unitId" component={UnitView} />
+      </Router>
+    </div>
   );
 }
 

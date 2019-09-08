@@ -50,10 +50,12 @@ export default class UnitView extends React.Component {
         ]
         const environmentalData = unit.sensors.reduce(
             (mapKeyToSensor, { sensor, data }) => {
+                const { value, measurement, dateTime } = data[0];
                 mapKeyToSensor[sensor] = {
                     name: mapKeyToName[sensor],
-                    value: data[0].value,
-                    measurement: data[0].measurement
+                    value,
+                    measurement,
+                    dateTime
                 };
                 return mapKeyToSensor;
             },

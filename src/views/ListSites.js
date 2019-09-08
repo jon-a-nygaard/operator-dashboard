@@ -26,10 +26,12 @@ function getSiteLayout(site) {
 function getUnitCard(unit, url) {
     const { unitName, unitId } = unit;
     return <div class="card">
-        <div class="card-body">
+        <div class="card-header">
             <h4 class="card-title">
                 <a href={url}>{`${unitName} - ${unitId}`}</a>
             </h4>
+        </div>
+        <div class="card-body">
             <p>Add description here</p>
         </div>
         <ul class="list-group list-group-flush">

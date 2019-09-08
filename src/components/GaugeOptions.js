@@ -2,7 +2,7 @@ export default {
 
     chart: {
         type: 'solidgauge',
-        height: 200
+        height: 170
     },
     credits: {
         enabled: false
@@ -34,14 +34,14 @@ export default {
         minorTickInterval: null,
         tickAmount: 2,
         title: {
-            y: 70
+            y: 10
         }
     },
 
     plotOptions: {
         solidgauge: {
             dataLabels: {
-                y: -60,
+                y: 0,
                 borderWidth: 0,
                 useHTML: true
             }
