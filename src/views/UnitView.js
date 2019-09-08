@@ -1,5 +1,5 @@
 import React from 'react';
-import { getUnit, getUnitSensors } from '../helpers/api.js';
+import { getUnitWithSensors } from '../helpers/api.js';
 import ListComponent from '../components/ListComponent.js';
 import SensorsChart from '../components/SensorsChart.js';
 import EnvironmentalSection from '../components/EnvironmentalSection.js';
@@ -15,25 +15,14 @@ export default class UnitView extends React.Component {
     constructor() {
         super();
         this.state = {
-            unit: undefined,
             isLoading: true
         }
     }
     componentDidMount() {
         const { siteId, unitId } = this.props.match.params;
-        return getUnit(Number(siteId), Number(unitId)).then(unit => {
-            const promises = ['oxy_o2_percent', 'oxy_temp', 'depth'].map(sensor => {
-                return getUnitSensors(unitId, sensor, `siteId eq ${siteId}`)
-                    .then(response => ({
-                        sensor,
-                        data: response.result
-                    }));
-            })
-            return Promise.all(promises).then(sensors => {
-                unit.sensors = sensors;
-                return unit;
-            })
-        }).then(unit => this.setState({ unit, isLoading: false }));
+        // Get data from the web API
+        return getUnitWithSensors(Number(siteId), Number(unitId))
+            .then(unit => this.setState({ unit, isLoading: false }));
     }
     render() {
         const { unit, isLoading } = this.state;

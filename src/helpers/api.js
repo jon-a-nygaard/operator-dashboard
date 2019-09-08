@@ -38,6 +38,21 @@ export function getSites() {
     return fetchJSON(path, defaultOptions);
 }
 
+export function getSitesWithUnits() {
+    const addUnitsToSiteObject = site => units => {
+        site.units = units;
+        return site;
+    }
+    return getSites().then(sites => {
+        // Request all units
+        const sitesPromises = sites.map(
+            site => getSiteUnits(site.siteId)
+                .then(addUnitsToSiteObject(site))
+        );
+        return Promise.all(sitesPromises)
+    })
+}
+
 /**
  * Get list fish cage for a specific site
  *
@@ -53,6 +68,22 @@ export function getSiteUnits(siteId) {
 export function getUnit(siteId, unitId) {
     return getSiteUnits(siteId)
         .then(units => units.find(unit => unit.unitId === unitId));
+}
+
+export function getUnitWithSensors(siteId, unitId) {
+    return getUnit(siteId, unitId).then(unit => {
+        const promises = ['oxy_o2_percent', 'oxy_temp', 'depth'].map(sensor => {
+            return getUnitSensors(unitId, sensor, `siteId eq ${siteId}`)
+                .then(response => ({
+                    sensor,
+                    data: response.result
+                }));
+        })
+        return Promise.all(promises).then(sensors => {
+            unit.sensors = sensors;
+            return unit;
+        })
+    })
 }
 
 /**
