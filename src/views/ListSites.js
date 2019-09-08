@@ -55,9 +55,12 @@ export default class ListSites extends React.Component {
     }
     render() {
         const { sites, isLoading } = this.state;
+
+        // Display loading spinner if data is not available
         if (isLoading) {
             return <LoadingComponent />
         }
+
         const cards = sites.map(getSiteLayout);
         return (
             <div class="container">

@@ -26,9 +26,12 @@ export default class UnitView extends React.Component {
     }
     render() {
         const { unit, isLoading } = this.state;
+
+        // Display loading spinner if data is not available
         if (isLoading) {
             return <LoadingComponent />
         }
+
         const {
             unitName,
             unitId,
