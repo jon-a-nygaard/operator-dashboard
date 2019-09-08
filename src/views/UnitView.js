@@ -61,17 +61,17 @@ export default class UnitView extends React.Component {
         );
 
         return <div class="container">
-            <h1>{unitName}</h1>
+            <h1>Unit: {unitName}</h1>
             <div class="row">
                 <div class="col">
-                    <h2>Unit data</h2>
+                    <h2>Information</h2>
                     <List list={list} />
                 </div> 
             </div>
             <Environmental data={environmentalData} />
             <div class="row">
                 <div class="col">
-                    <h2>Historical data - last 24 hours</h2>  
+                    <h2>Sensor values last 24 hours</h2>  
                     <SensorsChart options={unit} />
                 </div> 
             </div> 
