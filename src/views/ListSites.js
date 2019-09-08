@@ -1,5 +1,6 @@
 import React from 'react';
 import { getSites, getSiteUnits } from '../helpers/api.js';
+import LoadingComponent from '../components/LoadingComponent.js';
 
 function getSiteLayout(site) {
     const { siteId, siteName, units } = site;
@@ -49,10 +50,15 @@ export default class ListSites extends React.Component {
     constructor() {
         super();
         this.state = {
-            sites: []
+            sites: [],
+            isLoading: true
         };
+        // return getSites().then(() => {
+        //     console.log('done')
+        // })
     }
     componentDidMount() {
+        console.log('@componentDidMount')
         // Request available sites from api
         getSites().then(sites => {
             // Request all units
@@ -62,13 +68,17 @@ export default class ListSites extends React.Component {
             );
             Promise.all(sitesPromises).then(sitesWithUnits => {
                 this.setState({
-                    sites: sitesWithUnits
+                    sites: sitesWithUnits,
+                    isLoading: false
                 })
             });
         });
     }
     render() {
-        const { sites } = this.state;
+        const { sites, isLoading } = this.state;
+        if (isLoading) {
+            return <LoadingComponent />
+        }
         console.log(sites)
         const cards = sites.map(getSiteLayout);
         return (

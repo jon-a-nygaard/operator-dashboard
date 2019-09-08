@@ -3,6 +3,7 @@ import { getUnit, getUnitSensors } from '../helpers/api.js';
 import ListComponent from '../components/ListComponent.js';
 import SensorsChart from '../components/SensorsChart.js';
 import EnvironmentalSection from '../components/EnvironmentalSection.js';
+import LoadingComponent from '../components/LoadingComponent.js';
 
 const mapKeyToName = {
     oxy_temp: "Temperature",
@@ -14,7 +15,8 @@ export default class UnitView extends React.Component {
     constructor() {
         super();
         this.state = {
-            unit: undefined
+            unit: undefined,
+            isLoading: true
         }
     }
     componentDidMount() {
@@ -31,12 +33,12 @@ export default class UnitView extends React.Component {
                 unit.sensors = sensors;
                 return unit;
             })
-        }).then(unit => this.setState({ unit }));
+        }).then(unit => this.setState({ unit, isLoading: false }));
     }
     render() {
-        const { unit } = this.state;
-        if (!unit) {
-            return <div></div>;
+        const { unit, isLoading } = this.state;
+        if (isLoading) {
+            return <LoadingComponent />
         }
         const {
             unitName,
