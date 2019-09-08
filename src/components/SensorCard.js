@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ListComponent from './list.js';
+import ListComponent from './ListComponent.js';
 
 export default class SensorCard extends React.Component {
     render() {

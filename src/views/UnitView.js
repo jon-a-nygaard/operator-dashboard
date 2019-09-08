@@ -1,6 +1,6 @@
 import React from 'react';
 import { getUnit, getUnitSensors } from '../helpers/api.js';
-import List from '../components/list.js';
+import ListComponent from '../components/ListComponent.js';
 import SensorsChart from '../components/SensorsChart.js';
 import Environmental from '../components/environmental.js';
 
@@ -67,7 +67,7 @@ export default class UnitView extends React.Component {
             <div class="row">
                 <div class="col">
                     <h2>Information</h2>
-                    <List list={list} />
+                    <ListComponent list={list} />
                 </div> 
             </div>
             <Environmental data={environmentalData} />
