@@ -4,6 +4,12 @@ import List from '../components/list.js';
 import SensorsChart from '../components/SensorsChart.js';
 import Environmental from '../components/environmental.js';
 
+const mapKeyToName = {
+    oxy_temp: "Temperature",
+    oxy_o2_percent: 'Oxygen',
+    depth: "Depth"
+}
+
 export default class UnitView extends React.Component {
     constructor() {
         super();
@@ -42,8 +48,17 @@ export default class UnitView extends React.Component {
             { name: 'Id', value: unitId },
             { name: 'Site Id', value: siteId }
         ]
-        const environmentalData = [];
-        console.log(unit)
+        const environmentalData = unit.sensors.reduce(
+            (mapKeyToSensor, { sensor, data }) => {
+                mapKeyToSensor[sensor] = {
+                    name: mapKeyToName[sensor],
+                    value: data[0].value,
+                    measurement: data[0].measurement
+                };
+                return mapKeyToSensor;
+            },
+            {}
+        );
 
         return <div class="container">
             <h1>{unitName}</h1>
