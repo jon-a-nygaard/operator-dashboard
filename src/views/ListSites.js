@@ -1,10 +1,10 @@
 import React from 'react';
-import { getSites, getSiteUnits } from './helpers/api.js';
+import { getSites, getSiteUnits } from '../helpers/api.js';
 
 function getSiteLayout(site) {
     const { siteId, siteName, units } = site;
     const unitElements = units.map(unit => {
-        const unitUrl = `/${siteId}/${unit.unitId}`
+        const unitUrl = `/unit/${siteId}/${unit.unitId}`
         return <div class="col-4 unit">
             {getUnitCard(unit, unitUrl)}
         </div>
@@ -28,7 +28,7 @@ function getUnitCard(unit, url) {
     return <div class="card">
         <div class="card-body">
             <h4 class="card-title">
-                <a href="{url}">{`${unitName} - ${unitId}`}</a>
+                <a href={url}>{`${unitName} - ${unitId}`}</a>
             </h4>
             <p>Add description here</p>
         </div>
@@ -43,7 +43,7 @@ const addUnitsToSiteObject = site => units => {
     return site;
 }
 
-class ListSites extends React.Component {
+export default class ListSites extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -77,5 +77,3 @@ class ListSites extends React.Component {
         );
     };
 }
-
-export default ListSites;
