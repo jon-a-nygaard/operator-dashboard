@@ -69,6 +69,6 @@ export function getUnit(siteId, unitId) {
  * @returns Returns a promise which resolves an object.
  */
 export function getUnitSensors(unitId, select, filter) {
-    const path = `${REACT_APP_API_DOMAIN}/v1/sensors/units/${unitId}?select=${select}&filter=${filter}`;
+    const path = `${REACT_APP_API_DOMAIN}/v1/sensors/units/${unitId}?$select=${select}&$filter=${filter}`;
     return fetchJSON(path, defaultOptions);
 }
