@@ -50,6 +50,11 @@ export function getSiteUnits(siteId) {
     return fetchJSON(path, defaultOptions);
 }
 
+export function getUnit(siteId, unitId) {
+    return getSiteUnits(siteId)
+        .then(units => units.find(unit => unit.unitId === unitId));
+}
+
 /**
  * Get daily sensor data points
  *
