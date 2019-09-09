@@ -37,6 +37,7 @@ The command will take care of cloning the repository, install dependencies, and 
 # Todo
 - Tests - skipped to speed up development.
 - Document code - skipped to speed up development.
+- Add linting and code formatting. Use ESLint, and or Prettier to format the code. Check first if Create-React-App comes with another preffered solution, or if ReactJS has an opinion about this.
 - Create a compare view where it is possible to select two units and compare their values.
 - Update unit sensor data with regular intervals. I assume `/v1/sensors/units/{unitId}` will return the last data for each sensor, and I chose this over `/v1/basic/environment` because the request responded faster.
 - Add support for static pages.
